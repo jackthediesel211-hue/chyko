@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>CHYKO – zamawianie do stolika</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#10100e;--card:#1e1d18;--tx:#f6efe0;--mut:#a9a290;--red:#ff4b2b;--gold:#ffb52e;--grn:#27b868;--line:#2e2c24;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--tx);font:400 16px/1.5 'DM Sans',system-ui,sans-serif;min-height:100vh;padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+h1,h2,h3,.an{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.05}
+.wrap{max-width:760px;margin:auto;padding:0 18px}.wide{max-width:1300px}
+header{padding:22px 0 10px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font:400 26px Anton,Impact,sans-serif;letter-spacing:2px}.logo b{color:var(--gold)}
+.tb{background:var(--gold);color:#10100e;padding:6px 16px;border-radius:99px;font:400 22px Anton,Impact,sans-serif}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:14px 24px;border-radius:99px;font:700 15px 'DM Sans',sans-serif;border:0;cursor:pointer;background:var(--red);color:#fff}
+.btn.g{background:transparent;border:1.5px solid var(--line);color:var(--tx)}.btn.s{padding:9px 16px;font-size:13px}.btn.ok{background:var(--grn)}.btn.y{background:var(--gold);color:#10100e}
+.btn:disabled{opacity:.4;cursor:default}
+h2.cat{font-size:30px;margin:30px 0 12px;color:var(--gold)}
+.it{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:10px;display:flex;gap:14px;align-items:center;justify-content:space-between}
+.it .nm{font-weight:700}.it .ds{color:var(--mut);font-size:13px}.it .pr{font:400 22px Anton,Impact,sans-serif;color:var(--gold);margin-top:2px}
+.st{display:flex;align-items:center;gap:10px;flex:none}.st button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg);color:var(--tx);font-size:20px;cursor:pointer}
+.st button.p{background:var(--red);border-color:var(--red)}.st span{min-width:18px;text-align:center;font-weight:700}
+.bar{position:fixed;left:0;right:0;bottom:0;background:rgba(16,16,14,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:14px 18px calc(14px + env(safe-area-inset-bottom,0px));z-index:10}
+.bar .wrap{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:0}
+.bar b{font:400 28px Anton,Impact,sans-serif;color:var(--gold)}
+textarea{width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;color:var(--tx);padding:12px;font:inherit;resize:vertical;min-height:70px}
+.note{color:var(--mut);font-size:13px;margin:10px 0}
+.mod{position:fixed;inset:0;background:rgba(0,0,0,.8);display:grid;place-items:center;padding:18px;z-index:30;overflow:auto}
+.mb{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px;max-width:460px;width:100%}
+.mb h2{font-size:34px;margin-bottom:12px}
+.ln{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:15px}
+.big{text-align:center;padding:40px 10px}.big h1{font-size:56px;margin:14px 0}.big .ic{font-size:64px}
+.pill{display:inline-block;padding:6px 16px;border-radius:99px;font-weight:700;font-size:14px;background:var(--gold);color:#10100e}
+.pill.g{background:var(--grn);color:#fff}
+.home{display:grid;gap:14px;margin-top:24px}
+.home .c{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px}
+.home h2{font-size:32px;margin-bottom:8px}.home p{color:var(--mut);margin-bottom:16px}
+select{background:var(--bg);color:var(--tx);border:1px solid var(--line);border-radius:99px;padding:12px 18px;font:inherit;margin-right:8px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.col h2{font-size:26px;margin-bottom:12px;display:flex;justify-content:space-between}
+.col.n h2{color:var(--red)}.col.w h2{color:var(--gold)}.col.r h2{color:var(--grn)}
+.o{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
+.o.new{border-color:var(--red);animation:pl 1.2s ease-in-out 3}
+@keyframes pl{50%{box-shadow:0 0 0 6px rgba(255,75,43,.35)}}
+.o .hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.o .tn{font:400 38px Anton,Impact,sans-serif}.o .tm{color:var(--mut);font-size:13px}
+.o .li{font-size:17px;padding:2px 0}.o .li b{color:var(--gold);margin-right:6px}
+.o .nt{margin-top:8px;padding:8px 10px;background:#2b2412;border-left:3px solid var(--gold);border-radius:6px;font-size:14px}
+.o .ac{margin-top:12px;display:flex;gap:8px}
+.qr{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;margin-top:20px}
+.qr .q{background:#fff;color:#111;border-radius:16px;padding:16px;text-align:center}
+.qr .q svg{width:100%;height:auto}.qr .q b{font:400 30px Anton,Impact,sans-serif;display:block;margin-bottom:6px}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+@media print{body{background:#fff}header,.noprint{display:none}}
+.tabs{display:flex;gap:8px;margin:6px 0 14px;flex-wrap:wrap}.tab{background:var(--card);border:1px solid var(--line);color:var(--mut);padding:10px 20px;border-radius:99px;cursor:pointer;font:700 14px 'DM Sans',sans-serif}.tab.on{background:var(--gold);color:#10100e;border-color:var(--gold)}
+.wt{font:400 24px Anton,Impact,sans-serif;margin:2px 0 4px}.wt.g{color:var(--grn)}.wt.y{color:var(--gold)}.wt.r{color:var(--red)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--gold);font-weight:700;white-space:nowrap}td:nth-child(3),td:nth-child(5){white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+(function(){
+var app=document.getElementById('app'),MENU=[],cart={},T=parseInt(location.pathname.split('/').pop(),10)||0,timer=null;
+
+function h(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function zl(n){return n+' zł'}
+function head(r){var w=h('div','wrap'),hd=h('header'),l=h('a','logo');l.href='/';l.innerHTML='♛ CHY<b>KO</b>';hd.appendChild(l);if(r)hd.appendChild(r);w.appendChild(hd);return w}
+function api(u,o){return fetch(u,o).then(function(r){return r.json().then(function(j){if(!r.ok){j.status=r.status;throw j}return j})})}
+function post(u,b){return api(u,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify(b)})}
+var STAT={new:'Nowe',prep:'W przygotowaniu',ready:'Gotowe'};
+
+function stop(){if(timer){clearInterval(timer);timer=null}}
+function chooser(){app.innerHTML='';var w=head();app.appendChild(w);w.appendChild(h('h1','an','Zamawianie do stolika'));w.appendChild(h('p','note','Zeskanuj kod QR przy stoliku albo wybierz numer stolika.'));
+var s=h('select');for(var i=1;i<=20;i++){var o=h('option','','Stolik '+i);o.value=i;s.appendChild(o)}
+var b=h('button','btn','Zamawiam →');b.onclick=function(){location.href='/stolik/'+s.value};var r=h('div');r.style.marginTop='18px';r.appendChild(s);r.appendChild(b);w.appendChild(r)}
+
+function menuView(){stop();app.innerHTML='';var w=head(h('span','tb','Stolik '+T));app.appendChild(w);
+MENU.forEach(function(cat){w.appendChild(h('h2','cat',cat.cat));cat.items.forEach(function(it){
+var row=h('div','it'),l=h('div');l.appendChild(h('div','nm',it.name));if(it.desc)l.appendChild(h('div','ds',it.desc));l.appendChild(h('div','pr',zl(it.price)));
+var st=h('div','st'),m=h('button','','−'),q=h('span','',cart[it.id]?cart[it.id].q:0),p=h('button','p','+');
+function set(d){var c=cart[it.id]||(cart[it.id]={id:it.id,name:it.name,price:it.price,q:0});c.q=Math.max(0,Math.min(20,c.q+d));if(!c.q)delete cart[it.id];q.textContent=cart[it.id]?cart[it.id].q:0;upd()}
+m.onclick=function(){set(-1)};p.onclick=function(){set(1)};st.appendChild(m);st.appendChild(q);st.appendChild(p);row.appendChild(l);row.appendChild(st);w.appendChild(row)})});
+w.appendChild(h('p','note','Płatność przy kasie lub przy stoliku po złożeniu zamówienia. Informacje o alergenach uzyskasz u obsługi.'));
+var bar=h('div','bar'),bw=h('div','wrap'),tot=h('div'),go=h('button','btn','Przejrzyj zamówienie');tot.innerHTML='<div class="note" style="margin:0" id="cn"></div><b id="ct"></b>';bw.appendChild(tot);bw.appendChild(go);bar.appendChild(bw);app.appendChild(bar);
+function sum(){var t=0,c=0;for(var k in cart){t+=cart[k].q*cart[k].price;c+=cart[k].q}return[t,c]}
+function upd(){var s=sum();document.getElementById('ct').textContent=zl(s[0]);document.getElementById('cn').textContent=s[1]?s[1]+' poz.':'Koszyk pusty';go.disabled=!s[1]}upd();
+go.onclick=review}
+
+function review(){var s=0,m=h('div','mod'),b=h('div','mb');b.appendChild(h('h2','','Twoje zamówienie'));
+for(var k in cart){var c=cart[k],l=h('div','ln');l.appendChild(h('span','',c.q+' × '+c.name));l.appendChild(h('span','',zl(c.q*c.price)));b.appendChild(l);s+=c.q*c.price}
+var t=h('div','ln');t.style.fontWeight='700';t.appendChild(h('span','','Razem'));t.appendChild(h('span','',zl(s)));b.appendChild(t);
+var ta=h('textarea');ta.placeholder='Uwagi dla kuchni (np. bez ostrego sosu)';ta.maxLength=300;ta.style.marginTop='14px';b.appendChild(ta);
+b.appendChild(h('p','note','Płatność przy kasie lub przy stoliku.'));
+var er=h('p','note'),row=h('div');row.style.cssText='display:flex;gap:10px';
+var back=h('button','btn g','Wróć'),send=h('button','btn','Wyślij do kuchni');back.onclick=function(){m.remove()};
+send.onclick=function(){send.disabled=true;send.textContent='Wysyłam…';
+post('/api/orders',{table:T,note:ta.value,items:Object.keys(cart).map(function(k){return{id:k,qty:cart[k].q}})}).then(function(r){cart={};m.remove();try{localStorage.setItem('chyko-order',JSON.stringify({id:r.id,num:r.num,t:T,ts:Date.now()}))}catch(e){}tracking(r.id,r.num)}).catch(function(e){send.disabled=false;send.textContent='Wyślij do kuchni';er.textContent=(e&&e.error)||'Nie udało się wysłać. Spróbuj ponownie lub zawołaj obsługę.'})};
+row.appendChild(back);row.appendChild(send);b.appendChild(er);b.appendChild(row);m.appendChild(b);app.appendChild(m)}
+
+function tracking(id,num){stop();app.innerHTML='';var w=head(h('span','tb','Stolik '+T));app.appendChild(w);var d=h('div','big');w.appendChild(d);
+function draw(st){d.innerHTML='';d.appendChild(h('div','ic',st==='done'?'🙏':st==='ready'?'🔔':st==='prep'?'🔥':'✅'));
+d.appendChild(h('h1','an',st==='done'?'Dziękujemy!':st==='ready'?'Gotowe! Smacznego':st==='prep'?'Kuchnia już gotuje':'Zamówienie wysłane'));
+d.appendChild(h('span','pill'+(st==='ready'||st==='done'?' g':''),'Zamówienie #'+num+' · '+(st==='done'?'Wydane':STAT[st]||'Nowe')));
+d.appendChild(h('p','note','Płatność przy kasie lub przy stoliku.'))}
+draw('new');
+function poll(){api('/api/orders/'+id).then(function(j){draw(j.status);if(j.status==='done')stop()}).catch(function(){})}
+timer=setInterval(poll,4000);poll();
+var more=h('button','btn g','Zamów coś jeszcze');more.style.marginTop='10px';more.onclick=function(){menuView()};w.appendChild(more)}
+
+if(!(T>=1&&T<=50)){chooser()}
+else{app.innerHTML='';var w0=head(h('span','tb','Stolik '+T));app.appendChild(w0);w0.appendChild(h('p','note','Ładuję menu…'));
+api('/api/menu').then(function(j){MENU=j.menu;
+var o=null;try{o=JSON.parse(localStorage.getItem('chyko-order')||'null')}catch(e){}
+if(o&&o.t===T&&Date.now()-o.ts<3*3600*1000)tracking(o.id,o.num);else menuView()}).catch(function(){w0.appendChild(h('p','note','Nie udało się załadować menu. Odśwież stronę lub zawołaj obsługę.'))})}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Panel kuchni – CHYKO</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#10100e;--card:#1e1d18;--tx:#f6efe0;--mut:#a9a290;--red:#ff4b2b;--gold:#ffb52e;--grn:#27b868;--line:#2e2c24;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--tx);font:400 16px/1.5 'DM Sans',system-ui,sans-serif;min-height:100vh;padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+h1,h2,h3,.an{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.05}
+.wrap{max-width:760px;margin:auto;padding:0 18px}.wide{max-width:1300px}
+header{padding:22px 0 10px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font:400 26px Anton,Impact,sans-serif;letter-spacing:2px}.logo b{color:var(--gold)}
+.tb{background:var(--gold);color:#10100e;padding:6px 16px;border-radius:99px;font:400 22px Anton,Impact,sans-serif}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:14px 24px;border-radius:99px;font:700 15px 'DM Sans',sans-serif;border:0;cursor:pointer;background:var(--red);color:#fff}
+.btn.g{background:transparent;border:1.5px solid var(--line);color:var(--tx)}.btn.s{padding:9px 16px;font-size:13px}.btn.ok{background:var(--grn)}.btn.y{background:var(--gold);color:#10100e}
+.btn:disabled{opacity:.4;cursor:default}
+h2.cat{font-size:30px;margin:30px 0 12px;color:var(--gold)}
+.it{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:10px;display:flex;gap:14px;align-items:center;justify-content:space-between}
+.it .nm{font-weight:700}.it .ds{color:var(--mut);font-size:13px}.it .pr{font:400 22px Anton,Impact,sans-serif;color:var(--gold);margin-top:2px}
+.st{display:flex;align-items:center;gap:10px;flex:none}.st button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg);color:var(--tx);font-size:20px;cursor:pointer}
+.st button.p{background:var(--red);border-color:var(--red)}.st span{min-width:18px;text-align:center;font-weight:700}
+.bar{position:fixed;left:0;right:0;bottom:0;background:rgba(16,16,14,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:14px 18px calc(14px + env(safe-area-inset-bottom,0px));z-index:10}
+.bar .wrap{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:0}
+.bar b{font:400 28px Anton,Impact,sans-serif;color:var(--gold)}
+textarea{width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;color:var(--tx);padding:12px;font:inherit;resize:vertical;min-height:70px}
+.note{color:var(--mut);font-size:13px;margin:10px 0}
+.mod{position:fixed;inset:0;background:rgba(0,0,0,.8);display:grid;place-items:center;padding:18px;z-index:30;overflow:auto}
+.mb{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px;max-width:460px;width:100%}
+.mb h2{font-size:34px;margin-bottom:12px}
+.ln{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:15px}
+.big{text-align:center;padding:40px 10px}.big h1{font-size:56px;margin:14px 0}.big .ic{font-size:64px}
+.pill{display:inline-block;padding:6px 16px;border-radius:99px;font-weight:700;font-size:14px;background:var(--gold);color:#10100e}
+.pill.g{background:var(--grn);color:#fff}
+.home{display:grid;gap:14px;margin-top:24px}
+.home .c{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px}
+.home h2{font-size:32px;margin-bottom:8px}.home p{color:var(--mut);margin-bottom:16px}
+select{background:var(--bg);color:var(--tx);border:1px solid var(--line);border-radius:99px;padding:12px 18px;font:inherit;margin-right:8px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.col h2{font-size:26px;margin-bottom:12px;display:flex;justify-content:space-between}
+.col.n h2{color:var(--red)}.col.w h2{color:var(--gold)}.col.r h2{color:var(--grn)}
+.o{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
+.o.new{border-color:var(--red);animation:pl 1.2s ease-in-out 3}
+@keyframes pl{50%{box-shadow:0 0 0 6px rgba(255,75,43,.35)}}
+.o .hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.o .tn{font:400 38px Anton,Impact,sans-serif}.o .tm{color:var(--mut);font-size:13px}
+.o .li{font-size:17px;padding:2px 0}.o .li b{color:var(--gold);margin-right:6px}
+.o .nt{margin-top:8px;padding:8px 10px;background:#2b2412;border-left:3px solid var(--gold);border-radius:6px;font-size:14px}
+.o .ac{margin-top:12px;display:flex;gap:8px}
+.qr{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;margin-top:20px}
+.qr .q{background:#fff;color:#111;border-radius:16px;padding:16px;text-align:center}
+.qr .q svg{width:100%;height:auto}.qr .q b{font:400 30px Anton,Impact,sans-serif;display:block;margin-bottom:6px}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+@media print{body{background:#fff}header,.noprint{display:none}}
+.tabs{display:flex;gap:8px;margin:6px 0 14px;flex-wrap:wrap}.tab{background:var(--card);border:1px solid var(--line);color:var(--mut);padding:10px 20px;border-radius:99px;cursor:pointer;font:700 14px 'DM Sans',sans-serif}.tab.on{background:var(--gold);color:#10100e;border-color:var(--gold)}
+.wt{font:400 24px Anton,Impact,sans-serif;margin:2px 0 4px}.wt.g{color:var(--grn)}.wt.y{color:var(--gold)}.wt.r{color:var(--red)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--gold);font-weight:700;white-space:nowrap}td:nth-child(3),td:nth-child(5){white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+(function(){
+var app=document.getElementById('app'),off=0,seen=null,fresh={},ORD=[],iv=null,ti=null,audio,box={},hist;
+
+function h(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function zl(n){return n+' zł'}
+function head(r){var w=h('div','wrap'),hd=h('header'),l=h('a','logo');l.href='/';l.innerHTML='♛ CHY<b>KO</b>';hd.appendChild(l);if(r)hd.appendChild(r);w.appendChild(hd);return w}
+function api(u,o){return fetch(u,o).then(function(r){return r.json().then(function(j){if(!r.ok){j.status=r.status;throw j}return j})})}
+function post(u,b){return api(u,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify(b)})}
+var STAT={new:'Nowe',prep:'W przygotowaniu',ready:'Gotowe'};
+
+var FM=new Intl.DateTimeFormat('pl-PL',{timeZone:'Europe/Warsaw',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+function fmt(ts){return ts?FM.format(new Date(ts)).replace(', ',' '):'–'}
+function dur(ms){var s=Math.max(0,Math.floor(ms/1000)),m=Math.floor(s/60);return m+':'+String(s%60).padStart(2,'0')}
+function nowS(){return Date.now()+off}
+function tick(){document.querySelectorAll('[data-since]').forEach(function(e){var ms=nowS()-(+e.dataset.since),m=ms/60000;e.textContent=e.dataset.lbl+dur(ms);e.className='wt '+(m>10?'r':m>5?'y':'g')})}
+function beep(){try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();[0,.18].forEach(function(t){var o=audio.createOscillator(),g=audio.createGain();o.frequency.value=t?1100:880;o.connect(g);g.connect(audio.destination);g.gain.setValueAtTime(.25,audio.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+t+.16);o.start(audio.currentTime+t);o.stop(audio.currentTime+t+.17)})}catch(e){}}
+function stopAll(){if(iv)clearInterval(iv);if(ti)clearInterval(ti);iv=ti=null}
+
+function pin(msg){stopAll();app.innerHTML='';var w=head();app.appendChild(w);w.appendChild(h('h1','an','Panel kuchni'));w.appendChild(h('p','note','Wpisz kod dostępu.'));
+var i=h('input');i.type='password';i.inputMode='numeric';i.maxLength=8;i.placeholder='••••';i.autocomplete='off';i.style.cssText='background:var(--card);border:1px solid var(--line);border-radius:14px;color:var(--tx);padding:14px;font:400 34px Anton,sans-serif;letter-spacing:12px;text-align:center;width:210px;display:block;margin:14px 0';
+var er=h('p','note',msg||''),b=h('button','btn','Wejdź');
+function go(){b.disabled=true;post('/api/kitchen/login',{pin:i.value}).then(function(){shell()}).catch(function(e){b.disabled=false;er.textContent=(e&&e.error)||'Błąd połączenia';i.value=''})}
+b.onclick=go;i.onkeydown=function(e){if(e.key==='Enter')go()};w.appendChild(i);w.appendChild(b);w.appendChild(er);i.focus()}
+
+function shell(){stopAll();app.innerHTML='';var snd=h('button','btn g s','🔔 Włącz dźwięk');snd.onclick=function(){beep();snd.textContent='🔔 Dźwięk włączony'};
+var w=head(snd);w.className='wrap wide';app.appendChild(w);
+var P={live:h('div'),hist:h('div'),qr:h('div')},tb=h('div','tabs');
+[['live','Zamówienia'],['hist','Historia'],['qr','Kody QR']].forEach(function(t){var b=h('button','tab',t[1]);b.onclick=function(){for(var k in P)P[k].style.display=k===t[0]?'block':'none';[].forEach.call(tb.children,function(x){x.className='tab'});b.className='tab on'};if(t[0]==='live')b.className='tab on';tb.appendChild(b)});
+w.appendChild(tb);for(var k in P){w.appendChild(P[k]);if(k!=='live')P[k].style.display='none'}
+var cols=h('div','cols');['new','prep','ready'].forEach(function(s){var c=h('div','col '+{new:'n',prep:'w',ready:'r'}[s]);box[s]=c;cols.appendChild(c)});P.live.appendChild(cols);hist=h('div');P.hist.appendChild(hist);
+P.qr.appendChild(h('p','note noprint','Wydrukuj i przyklej do stolików. Kod prowadzi do zamawiania z numerem stolika.'));
+var g=h('div','qr');for(var i=1;i<=20;i++){var q=h('div','q'),u=location.origin+'/stolik/'+i;q.appendChild(h('b','','Stolik '+i));
+try{var r=qrcode(0,'M');r.addData(u);r.make();var dd=h('div');dd.innerHTML=r.createSvgTag(4);q.appendChild(dd)}catch(e){q.appendChild(h('small','','Brak generatora QR'))}
+q.appendChild(h('small','','Zeskanuj i zamów'));g.appendChild(q)}
+P.qr.appendChild(g);var pb=h('button','btn y noprint','Drukuj');pb.style.marginTop='20px';pb.onclick=function(){window.print()};P.qr.appendChild(pb);
+seen=null;poll();iv=setInterval(poll,3000);ti=setInterval(tick,1000)}
+
+function poll(){api('/api/kitchen/orders',{credentials:'same-origin'}).then(function(j){off=j.now-Date.now();
+if(seen){j.orders.forEach(function(o){if(!seen[o.id]&&o.status==='new'){fresh[o.id]=1;beep()}})}
+seen={};j.orders.forEach(function(o){seen[o.id]=1});ORD=j.orders;render()}).catch(function(e){if(e&&e.status===401)pin('Sesja wygasła. Wpisz kod ponownie.')})}
+
+var NX={new:['prep','Zacznij gotować','btn y s'],prep:['ready','Gotowe','btn ok s'],ready:['done','Wydane','btn g s']};
+function render(){['new','prep','ready'].forEach(function(s){box[s].innerHTML=''});var cnt={new:0,prep:0,ready:0},HI=[];
+ORD.slice().sort(function(a,b){return a.ts-b.ts}).forEach(function(o){if(o.status==='done'){HI.push(o);return}if(!box[o.status])return;cnt[o.status]++;
+var c=h('div','o'+(fresh[o.id]?' new':'')),hd=h('div','hd');hd.appendChild(h('span','tn','Stolik '+o.table));hd.appendChild(h('span','tm','#'+o.num));c.appendChild(hd);
+var wt=h('div');wt.dataset.since=o.status==='ready'?(o.readyTs||o.ts):o.ts;wt.dataset.lbl=o.status==='ready'?'⏱ gotowe od ':'⏱ czeka ';c.appendChild(wt);c.appendChild(h('div','tm','Złożono '+fmt(o.ts)));
+(o.items||[]).forEach(function(i){var l=h('div','li');l.appendChild(h('b','',i.qty+'×'));l.appendChild(document.createTextNode(i.name));c.appendChild(l)});
+if(o.note)c.appendChild(h('div','nt','💬 '+o.note));
+var nx=NX[o.status],ac=h('div','ac'),b=h('button',nx[2],nx[1]);b.onclick=function(){b.disabled=true;post('/api/kitchen/status',{id:o.id,status:nx[0]}).then(poll).catch(function(){b.disabled=false;poll()})};ac.appendChild(b);c.appendChild(ac);box[o.status].appendChild(c)});
+['new','prep','ready'].forEach(function(s){var t=h('h2','',STAT[s]);t.appendChild(h('span','',cnt[s]));box[s].insertBefore(t,box[s].firstChild);if(!cnt[s])box[s].appendChild(h('p','note','Brak zamówień'))});
+document.title=(cnt.new?'('+cnt.new+') ':'')+'Kuchnia – CHYKO';tick();
+HI.sort(function(a,b){return (b.doneTs||b.ts)-(a.doneTs||a.ts)});hist.innerHTML='';var sum=0;HI.forEach(function(o){sum+=o.total||0});
+hist.appendChild(h('p','note','Wydane zamówienia: '+HI.length+' · suma: '+zl(sum)+' (ostatnie 300 zamówień)'));
+var wr=h('div','tw'),t=h('table'),th=h('tr');['Nr','Stolik','Złożono','Do gotowego','Wydano','Pozycje','Kwota'].forEach(function(x){th.appendChild(h('th','',x))});t.appendChild(th);
+HI.forEach(function(o){var r=h('tr');['#'+o.num,o.table,fmt(o.ts),o.readyTs?dur(o.readyTs-o.ts):'–',fmt(o.doneTs),(o.items||[]).map(function(i){return i.qty+'× '+i.name}).join(', ')+(o.note?' [💬 '+o.note+']':''),zl(o.total||0)].forEach(function(x){r.appendChild(h('td','',x))});t.appendChild(r)});
+wr.appendChild(t);hist.appendChild(wr);if(!HI.length)hist.appendChild(h('p','note','Historia jest pusta.'))}
+
+api('/api/kitchen/orders',{credentials:'same-origin'}).then(shell).catch(function(e){pin(e&&e.status===401?'':(e&&e.error)||'')});
+})();
+</script>
+</body>
+</html>
